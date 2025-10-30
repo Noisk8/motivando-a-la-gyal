@@ -1,15 +1,34 @@
 ---
 import "../styles/global.css";
 const title = "Mi Landing";
+const description = "Landing simple con un logo";
+// Usa dominio absoluto si está configurado `site` en astro.config.mjs
+const site = Astro.site?.origin || "";
+const url = site ? site + "/" : "/";
+const ogImage = (site ? site : "") + "/motivando.jpg";
 ---
 <html lang="es">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
-    <meta name="description" content="Landing simple con un logo" />
+    <meta name="description" content={description} />
     <link rel="icon" type="image/jpeg" href="/motivando.jpg" />
     <link rel="apple-touch-icon" href="/motivando.jpg" />
+
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content="Imagen principal" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
   </head>
   <body class="min-h-screen bg-white text-gray-900 antialiased">
     <main class="min-h-screen grid place-items-center p-6">
